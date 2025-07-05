@@ -1,5 +1,5 @@
 def check_morse_code(s: str) -> bool:
-    return set(s).issubset({'*', '-', '.', '_'})
+    return set(s).issubset({'*', '-', '.', '_', ' '})
 
 def translate_morse(morse: str) -> str:
     code_len = len(morse)
@@ -129,11 +129,22 @@ def translate_morse(morse: str) -> str:
                     
 
 def main():
+    first = True
     input_string = input("Enter a letter or morse code: ")
-    input_string = input_string.replace(" ", "")
     if check_morse_code(input_string):
-        output = translate_morse(input_string)
-        print(output)
+        code_split = input_string.split(" ")
+        for code in code_split:
+            if check_morse_code(code) and code != "":
+                output = translate_morse(code)
+                print(output, end="")
+            elif code == "":
+                if first:
+                    print(" ", end="")
+                    first = False
+                else:
+                    first = True
+            else:
+                print("Invalid Morse Code")
 
 if __name__ == "__main__":
     main()
