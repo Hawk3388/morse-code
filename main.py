@@ -1,6 +1,9 @@
 def check_morse_code(s: str) -> bool:
     return set(s).issubset({'*', '-', '.', '_', ' '})
 
+def check_letter(s: str) -> bool:
+    return set(s).issubset(set("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "))
+
 def translate_morse(morse: str) -> str:
     code_len = len(morse)
     if morse[0] == ('*' or '.'):
@@ -127,6 +130,19 @@ def translate_morse(morse: str) -> str:
                     
     return "Invalid Morse Code"
                     
+def translate_letter(letter: str) -> str:
+    morse_dict = {
+        'A': '*-', 'B': '-***', 'C': '-*-*', 'D': '-**', 'E': '*',
+        'F': '**-*', 'G': '--*', 'H': '****', 'I': '**', 'J': '*---',
+        'K': '-*-', 'L': '*-**', 'M': '--', 'N': '-*', 'O': '---',
+        'P': '*--*', 'Q': '--*-', 'R': '*-*', 'S': '***', 'T': '-',
+        'U': '**-', 'V': '**-*', 'W': '*--', 'X': '-**-', 'Y': '-*--',
+        'Z': '--**',
+        '0': '-----', '1': '*----', '2': '**---', '3': "***--", 
+        '4': "****-",  '5': "*****",  '6': "-****",  '7': "--***", 
+        '8': "---**",  '9': "----*"
+    }
+    return morse_dict.get(letter, "Invalid Letter")
 
 def main():
     first = True
@@ -145,6 +161,15 @@ def main():
                     first = True
             else:
                 print("Invalid Morse Code")
+    
+    elif check_letter(input_string.upper()):
+        letter_split = list(input_string.upper())
+        for letter in letter_split:
+            if letter == " ":
+                print("   ", end="")
+            else:
+                morse_code = translate_letter(letter)
+                print(morse_code, end=" ")
 
 if __name__ == "__main__":
     main()
