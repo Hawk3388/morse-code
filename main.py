@@ -1,7 +1,7 @@
 import pyttsx3
+import simpleaudio as sa
 from pydub import AudioSegment
 from pydub.generators import Sine
-import simpleaudio as sa
 
 def check_morse_code(s: str) -> bool:
     return set(s).issubset({'*', '-', '.', '_', ' '})
