@@ -183,7 +183,7 @@ def translate_letter(letter: str) -> str:
 
 def main():
     first = True
-    input_string = input("Enter a letter or morse code: ")
+    input_string = input("Enter letters or morse code: ")
     if check_morse_code(input_string):
         full_text = ""
         code_split = input_string.split(" ")
