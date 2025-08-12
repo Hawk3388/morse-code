@@ -2,3 +2,4 @@ comtypes==1.4.11
 pydub==0.25.1
 pyttsx3==2.98
 simpleaudio==1.0.4
+Flask==3.1.0
