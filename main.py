@@ -182,43 +182,47 @@ def translate_letter(letter: str) -> str:
     return morse_dict.get(letter, "Invalid Letter")
 
 def main():
-    first = True
-    input_string = input("Enter letters or morse code: ")
-    if check_morse_code(input_string):
-        full_text = ""
-        code_split = input_string.split(" ")
-        for code in code_split:
-            if check_morse_code(code) and code != "":
-                output = translate_morse(code)
-                print(output, end="")
-                full_text += output
-            elif code == "":
-                if first:
-                    print(" ", end="")
-                    first = False
-                    full_text += " "
+    while True:
+        first = True
+        input_string = input("Enter letters or morse code: ")
+        if input_string.lower() == "quit":
+            break
+        elif check_morse_code(input_string):
+            full_text = ""
+            code_split = input_string.split(" ")
+            for code in code_split:
+                if check_morse_code(code) and code != "":
+                    output = translate_morse(code)
+                    print(output, end="")
+                    full_text += output
+                elif code == "":
+                    if first:
+                        print(" ", end="")
+                        first = False
+                        full_text += " "
+                    else:
+                        first = True
                 else:
-                    first = True
-            else:
-                print("Invalid Morse Code")
+                    print("Invalid Morse Code")
+            print("")
+            say_text(full_text)
         
-        say_text(full_text)
-    
-    elif check_letter(input_string.upper()):
-        morse = []
-        letter_split = list(input_string.upper())
-        for letter in letter_split:
-            if letter == " ":
-                print("   ", end="")
-                morse.append("   ")
-            else:
-                morse_code = translate_letter(letter)
-                print(morse_code, end=" ")
-                morse.append(morse_code + " ")
-        create_morse_audio(morse)
-    
-    else:
-        print("Invalid Input")
+        elif check_letter(input_string.upper()):
+            morse = []
+            letter_split = list(input_string.upper())
+            for letter in letter_split:
+                if letter == " ":
+                    print("   ", end="")
+                    morse.append("   ")
+                else:
+                    morse_code = translate_letter(letter)
+                    print(morse_code, end=" ")
+                    morse.append(morse_code + " ")
+            print("")
+            create_morse_audio(morse)
+        
+        else:
+            print("Invalid Input")
 
 if __name__ == "__main__":
     main()

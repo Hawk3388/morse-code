@@ -9,6 +9,7 @@ A Python program to convert text to Morse code and vice versa, including audio p
 - Speech output of the translated text
 - Audio playback of Morse code
 - Supports different Morse code symbols: `*`, `.`, `-`, `_`
+- Stop the program by typing `quit`
 
 ## Requirements
 
